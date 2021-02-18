@@ -1,0 +1,26 @@
+extends layout
+
+block content
+
+    h1 #{title}: #{storelocation.detail}
+
+    if storelocation_iteminstances.length
+
+        p #[strong Delete the following item instances before attempting to delete this store location.] 
+
+        div(style='margin-left:20px;margin-top:20px') 
+            h4 Item Instances
+
+            ul
+            each instance in storelocation_iteminstances
+                li
+                    a(href=instance.url) #{instance.item.name} 
+
+    else
+        p Do you really want to delete this Store Location?
+
+        form(method='POST' action='')
+            div.form-group
+                input#storelocationid.form-control(type='hidden' name='storelocationid' required='true' value=storelocation._id )
+
+            button.btn.btn-primary(type='submit') Delete 

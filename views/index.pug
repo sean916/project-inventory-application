@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  if error
+    p Error getting dynamic content.
+  else
+    p The database has the following record counts:
+
+    ul
+      li #[strong Items:] !{data.item_count}
+      li #[strong Item Copies:] !{data.item_instance_count}
+      li #[strong Categories:] !{data.category_count}
+      li #[strong Store Locations:] !{data.store_location_count}

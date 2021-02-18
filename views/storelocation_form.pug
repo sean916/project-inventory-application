@@ -1,0 +1,19 @@
+extends layout
+
+block content
+
+    h1 #{title} 
+
+    form(method='POST' action='')
+        div.form-group 
+            label(for='city_name') City Name:
+            input#city_name.form-control(type='text' required='true' placeholder='City Name' name='city_name' value=(undefined===storelocation ? '' : storelocation.city_name) )
+        div.form-group
+            label(for='zip_code') Zip Code:
+            input#zip_code.form-control(type='number' required='true' placeholder='12345' name='zip_code' value=(undefined===storelocation ? '' : storelocation.zip_code) )
+        button.btn.btn-primary(type='submit') Submit
+
+    if errors
+        ul
+            for error in errors
+                li!= error.msg 

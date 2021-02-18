@@ -1,0 +1,25 @@
+extends layout
+
+block content
+
+    h1 #{storelocation.city_name}
+    
+    div(style='margin-left:20px;margin-top:20px;')
+        p
+            a(href=storelocation.url+'/delete') Delete Store Location
+        p   
+            a(href=storelocation.url+'/update') Update Store Location
+
+
+    div(style='margin-left:20px;margin-top:20px')
+        h3 Item Instances
+
+        dl
+            each instance in storelocation_items
+                dt
+                    a(href=instance.item.url) #{instance.item.name} 
+                    |   $#{instance.item.price}
+                dd(style='margin-left:10px') - #{instance.item.description} 
+            
+            else
+                p There are no items at this store.

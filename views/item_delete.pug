@@ -1,0 +1,22 @@
+extends layout
+
+block content
+
+    h1 #{title}: #{item.name} 
+    p Item Description: #{item.description} 
+
+    if item_instances.length > 0 
+        h3 #[strong Please delete the following item instances before deleting this Item.]
+        div(style='margin-left:20px;margin-top:20px')
+            h4 Item Instances: 
+            ul 
+            each instance in item_instances 
+                li
+                    a(href=instance.url) #{instance.item.name}
+
+    else 
+        form(method='POST' action='')
+            div.form-group 
+                input#itemid.form-control(type='hidden' name='itemid' required=true value=item._id)
+            
+            button.btn.btn-primary(type='submit') Delete 

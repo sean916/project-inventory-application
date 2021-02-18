@@ -1,0 +1,13 @@
+extends layout
+
+block content
+
+    h1 #{title}: #{iteminstance.item.name} 
+    p Item Instance ID: #{iteminstance._id} 
+
+    p Do you really want to delete this Item Instance?
+
+    form(method='POST' action='')
+        div.form-group 
+            input#instanceid.form-control(type='hidden' name='instanceid' required='true' value=iteminstance._id)
+        button.btn.btn-primary(type='submit') Delete 

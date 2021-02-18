@@ -1,0 +1,31 @@
+extends layout
+
+block content
+
+    h1 #{title}
+
+    form(method='POST' action='')
+        div.form-group 
+            label(for='item') Item:
+            select#item.form-control(type='select' placeholder='Select item' name='item' required='true' )
+                - items.sort(function(a,b) {let textA = a.name.toUpperCase(); let textB = b.name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0; });
+                for item in items
+                    if iteminstance
+                        option(value=item._id selected=(item._id.toString()===iteminstance.item._id.toString() || item._id.toString()==iteminstance.item ? 'selected' : false) ) #{item.name}
+                    else
+                        option(value=item._id) #{item.name} 
+        div.form-group
+            label(for='storelocation') Store Location:
+            select#storelocation.form-control(type='select', placeholder='Select store location' name='storelocation' required='true' )
+                - storelocations.sort(function(a,b) {let textA = a.city_name.toUpperCase(); let textB = b.city_name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0; });
+                for storelocation in storelocations
+                    if iteminstance
+                        option(value=storelocation._id selected=(storelocation._id.toString()===iteminstance.store_location._id.toString() || storelocation._id.toString()== iteminstance.store_location ? 'selected' : false) ) #{storelocation.city_name} 
+                    else 
+                        option(value=storelocation._id) #{storelocation.city_name}
+        button.btn.btn-primary(type='submit') Submit
+
+    if errors
+        ul
+            for error in errors
+                li!= error.msg 

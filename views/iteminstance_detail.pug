@@ -1,0 +1,15 @@
+extends layout
+
+block content
+
+    h1 
+        a(href=iteminstance.item.url) #{iteminstance.item.name}
+    div(style="margin-left:10px")
+        a(href=iteminstance.store_location.url) #{iteminstance.store_location.detail}
+        
+        p Copy ID: #{iteminstance._id}
+
+        p
+            a(href=iteminstance.url+'/delete') Delete this Item Instance 
+        p   
+            a(href=iteminstance.url+'/update') Update this Item Instance 

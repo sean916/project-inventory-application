@@ -1,0 +1,11 @@
+extends layout
+
+block content
+
+    h1= title
+
+    ul
+        each location in storelocation_list
+            li
+                a(href=location.url) #{location.city_name}
+                | : #{location.zip_code}

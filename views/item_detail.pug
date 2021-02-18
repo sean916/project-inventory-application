@@ -1,0 +1,31 @@
+extends layout
+
+block content
+
+    h1 Item: #{item.name}
+
+    p #[strong Price: #{item.price}]
+    p #[strong Description:] #{item.description}
+    p #[strong Category: ]
+        - for (let i = 0; i < item.category.length; i++)
+            span
+                a(href=item.category[i].url) #{item.category[i].name} 
+                | - 
+
+        h3 Item Instances
+            
+        dl
+            each instance in item_instances
+                dt
+                    a(href=instance.url) #{title}
+                dd(style='margin-left:10px') - 
+                    a(href=instance.store_location.url) #{instance.store_location.detail}
+
+            else
+                p This item appears to be out of stock.
+
+    hr 
+    p
+        a(href=item.url+'/delete') Delete this Item 
+    p
+        a(href=item.url+'/update') Update this Item 
